@@ -13,9 +13,9 @@ public class RegisterPage implements IBusiness{
 	public boolean excute(WebDriver driver) throws Exception {
 		
 
-		LoginNormal loginNormal = new LoginNormal();
-		RegisterNormal registerNormal = new RegisterNormal();
-		LogOff logOff = new LogOff();
+		IBusiness loginNormal = new LoginNormal();
+		IBusiness registerNormal = new RegisterNormal();
+		IBusiness logOff = new LogOff();
 		LoginNormal loginNormal2 = new LoginNormal();
 
 		loginNormal2.setUserName(ConfigFile.getValueProperties("erNumber"));
@@ -34,6 +34,7 @@ public class RegisterPage implements IBusiness{
 			else
 			{
 				ConfigFile.appendContentToLogFile("******* Case Fail :( ******* ");
+				break;
 			}	
 			Thread.sleep(1000);
 				

@@ -94,10 +94,21 @@ public class RegisterNormal implements IBusiness {
 					//Click the Register button 
 					driver.findElement(By.xpath(ConfigFile.getElementProperties("registerSubmitButton"))).submit();
 					
-					ConfigFile.appendContentToLogFile("Step6: Register the new employee.");
-					ConfigFile.appendContentToLogFile(driver.findElement(By.xpath(ConfigFile.getElementProperties("registerAlert"))).getText());
-					
-					return true;
+					Thread.sleep(1000);
+					if (driver.findElement(By.xpath(ConfigFile.getElementProperties("registerAlert"))).isDisplayed())
+					{
+						ConfigFile.appendContentToLogFile("Step6: Register the new employee.");
+						ConfigFile.appendContentToLogFile(driver.findElement(By.xpath(ConfigFile.getElementProperties("registerAlert"))).getText());
+						
+						return true;
+					}
+					else 
+					{
+						ConfigFile.appendContentToLogFile("Step6: Registering the new employee failed.");
+						ConfigFile.appendContentToLogFile(driver.findElement(By.xpath(ConfigFile.getElementProperties("registerAlert"))).getText());
+						
+						return false;
+					}
 					
 				}
 				else

@@ -8,12 +8,13 @@ import org.openqa.selenium.WebDriver;
 import com.spidernet.autotest.util.CommonUtils;
 import com.spidernet.autotest.util.ConfigFile;
 
-public class LoginPage  implements IBusiness{
+public class LoginPage implements IBusiness{
 
 	public boolean excute(WebDriver driver) throws Exception {
 		
 		IBusiness loginExceptionInvalid = new LoginExceptionInvalid();
 		IBusiness loginExceptionEmptyName = new LoginExceptionEmptyName();
+		IBusiness loginExceptionEmptyPSW = new LoginExceptionEmptyPSW();
 		LoginNormal loginNormal = new LoginNormal();
 		
 		//loginNormal.setUserName(userName);
@@ -21,6 +22,7 @@ public class LoginPage  implements IBusiness{
 		List<IBusiness> list = new ArrayList<IBusiness>();
 
 		list.add(loginExceptionEmptyName);
+		list.add(loginExceptionEmptyPSW);
 		list.add(loginExceptionInvalid);
 		list.add(loginNormal);
 		
