@@ -40,6 +40,9 @@ static WebDriver driver = null;
 			IBusiness loginExceptionInvalid = new LoginExceptionInvalid();
 			IBusiness loginExceptionEmptyName = new LoginExceptionEmptyName();
 			IBusiness loginExceptionEmptyPSW = new LoginExceptionEmptyPSW();
+			IBusiness loginExceptionNamewithSpecialChar = new LoginExceptionNamewithSpecialChar();
+			IBusiness loginExceptionLongName = new LoginExceptionLongName();
+			IBusiness loginExceptionLongPSW = new LoginExceptionLongPSW();
 			LoginNormal loginNormal = new LoginNormal();
 			//loginNormal.setUserName(userName);
 			
@@ -47,6 +50,9 @@ static WebDriver driver = null;
 			list.add(loginExceptionEmptyName);
 			list.add(loginExceptionEmptyPSW);
 			list.add(loginExceptionInvalid);
+			list.add(loginExceptionNamewithSpecialChar);
+			list.add(loginExceptionLongName);
+			list.add(loginExceptionLongPSW);
 			list.add(loginNormal);
 			
 			for(IBusiness object:list){
