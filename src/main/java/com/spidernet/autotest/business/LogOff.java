@@ -30,30 +30,29 @@ public class LogOff implements IBusiness {
 				
 					if(logoelement1.getText().equals("登录"))
 					{
-						ConfigFile.appendContentToLogFile("Setp3: The user has logged off successfully");
+						ConfigFile.appendContentToLogFile("The user has logged off successfully");
 					}
 					return true;
 				}
 				
 				else
 				{
-					ConfigFile.appendContentToLogFile("Setp3: Logging off failed");
+					ConfigFile.appendContentToLogFile("Logging off failed");
 					return false;
 				}
 			}
 			else
 			{
-				ConfigFile.appendContentToLogFile("Setp2: Can not find the logoff button");
+				ConfigFile.appendContentToLogFile("Can not find the logoff button");
 				return false;
 			}
 		}
 		else
 		{
-			ConfigFile.appendContentToLogFile("Setp1: Can not find the user button");
+			ConfigFile.appendContentToLogFile("Can not find the user button");
 			return false;
 		}
-		
-		
+				
 	}
 
 }

@@ -17,7 +17,7 @@ import com.spidernet.autotest.util.ConfigFile;
 
 public class TestLoginPage {
 	
-static WebDriver driver = null;
+	static WebDriver driver = null;
 	
 	@BeforeClass
 	public static void createDriver()  {
