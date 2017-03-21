@@ -12,8 +12,11 @@ import com.spidernet.autotest.util.ConfigFile;
 
 //public static WebDriver createDriver(WebDriver driver) throws IOException {
 public class LoginNormal  implements IBusiness {
+	
 	private String userName=null;
 	private String password=null;
+	private String chineseName=null;
+	
 	public boolean excute(WebDriver driver) throws Exception{
 		
 		driver.navigate().to(ConfigFile.getConfigProperties("URL"));
@@ -72,7 +75,15 @@ public class LoginNormal  implements IBusiness {
 		    	
 		    	WebElement logoelement2 = driver.findElement(By.xpath(ConfigFile.getElementProperties("userinfo")));
 		    	
-		    	if(logoelement2.getText().equals(ConfigFile.getValueProperties("userinfo")))
+		    	String inputChineseName = null;
+		    	
+		    	if(null!=this.chineseName){
+					inputChineseName=this.chineseName;
+				}else{
+					inputChineseName=ConfigFile.getValueProperties("userinfo");
+				}
+		    	
+		    	if(logoelement2.getText().equals(inputChineseName))
 				{
 				    ConfigFile.appendContentToLogFile("Step2: Logged on the SpiderNet successfully");
 				   
@@ -115,6 +126,14 @@ public class LoginNormal  implements IBusiness {
 
 	public void setPassword(String password) {
 		this.password = password;
+	}
+	
+	public String getChineseName() {
+		return chineseName;
+	}
+
+	public void setChineseName(String chineseName) {
+		this.chineseName = chineseName;
 	}
 
 	public static void main(String[] args) throws Exception{

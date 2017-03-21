@@ -66,7 +66,7 @@ public class RegisterExceptionExistedUser implements IBusiness {
 				//Find the element of HR number and input number
 				
 				
-				if (driver.findElement(By.xpath(ConfigFile.getElementProperties("hrExistAlert"))).isDisplayed())
+				if (driver.findElement(By.xpath(ConfigFile.getElementProperties("hrExistAlert"))).isDisplayed()&& driver.findElement(By.xpath(ConfigFile.getElementProperties("hrExistAlert"))).getText().equals("HR号已存在"))
 				{
 					ConfigFile.appendContentToLogFile("Step3: Alert for existed HR number is shown as following.");
 					ConfigFile.appendContentToLogFile(driver.findElement(By.xpath(ConfigFile.getElementProperties("hrExistAlert"))).getText());

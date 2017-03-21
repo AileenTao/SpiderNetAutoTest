@@ -42,6 +42,8 @@ public class TestRegisterPage {
 
 			loginNormal2.setUserName(ConfigFile.getValueProperties("erNumber"));
 			loginNormal2.setPassword(ConfigFile.getValueProperties("empPassowrd"));
+			loginNormal2.setChineseName(ConfigFile.getValueProperties("chineseName"));
+			
 			List<IBusiness> list = new ArrayList<IBusiness>();
 
 			list.add(loginNormal);
