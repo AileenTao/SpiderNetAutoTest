@@ -33,22 +33,19 @@ public class TestRegisterPage {
 	}
 
 	@Test
-	public void testExcute() {
+	public void testRegisterExceptionMessage() {
 		try{
 			IBusiness loginNormal = new LoginNormal();
-			IBusiness registerNormal = new RegisterNormal();
+		    IBusiness registerExceptionMessage = new RegisterExceptionMessage();
 			IBusiness logOff = new LogOff();
-			LoginNormal loginNormal2 = new LoginNormal();
-
-			loginNormal2.setUserName(ConfigFile.getValueProperties("erNumber"));
-			loginNormal2.setPassword(ConfigFile.getValueProperties("empPassowrd"));
+				
+			
 			List<IBusiness> list = new ArrayList<IBusiness>();
 
 			list.add(loginNormal);
-			list.add(registerNormal);
+			list.add(registerExceptionMessage);
 			list.add(logOff);
-			list.add(loginNormal2);
-				
+							
 			for(IBusiness object:list){
 				boolean result = object.excute(driver);
 				if(result){
