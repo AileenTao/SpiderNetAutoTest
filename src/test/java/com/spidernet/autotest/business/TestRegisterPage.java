@@ -33,7 +33,7 @@ public class TestRegisterPage {
 	}
 
 	@Test
-	public void testExcute() {
+	public void testRegisterNormal() {
 		try{
 			IBusiness loginNormal = new LoginNormal();
 			IBusiness registerNormal = new RegisterNormal();
@@ -42,12 +42,86 @@ public class TestRegisterPage {
 
 			loginNormal2.setUserName(ConfigFile.getValueProperties("erNumber"));
 			loginNormal2.setPassword(ConfigFile.getValueProperties("empPassowrd"));
+			loginNormal2.setChineseName(ConfigFile.getValueProperties("chineseName"));
+			
 			List<IBusiness> list = new ArrayList<IBusiness>();
 
 			list.add(loginNormal);
 			list.add(registerNormal);
 			list.add(logOff);
 			list.add(loginNormal2);
+			list.add(logOff);
+				
+			for(IBusiness object:list){
+				boolean result = object.excute(driver);
+				if(result){
+					ConfigFile.appendContentToLogFile("******* Case Pass :) ******* ");
+					Assert.assertTrue(result);
+				}
+				else
+				{
+					ConfigFile.appendContentToLogFile("******* Case Fail :( ******* ");
+				}	
+				Thread.sleep(1000);
+			}
+			
+			
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+		
+	}
+	
+	
+	@Test
+	public void testRegisterExceptionMessage() {
+		try{
+			IBusiness loginNormal = new LoginNormal();
+		    IBusiness registerExceptionMessage = new RegisterExceptionMessage();
+			IBusiness logOff = new LogOff();
+				
+			
+			List<IBusiness> list = new ArrayList<IBusiness>();
+
+			list.add(loginNormal);
+			list.add(registerExceptionMessage);
+			list.add(logOff);
+							
+			for(IBusiness object:list){
+				boolean result = object.excute(driver);
+				if(result){
+					ConfigFile.appendContentToLogFile("******* Case Pass :) ******* ");
+					Assert.assertTrue(result);
+				}
+				else
+				{
+					ConfigFile.appendContentToLogFile("******* Case Fail :( ******* ");
+				}	
+				Thread.sleep(1000);
+			}
+			
+			
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+		
+	}
+
+
+	@Test
+	public void testRegisterExceptionExistedUser() {
+		try{
+			LoginNormal loginNormal = new LoginNormal();
+			IBusiness registerExceptionExistedUser = new RegisterExceptionExistedUser();
+			IBusiness logOff = new LogOff();
+			
+		
+			List<IBusiness> list = new ArrayList<IBusiness>();
+
+			list.add(loginNormal);
+			list.add(registerExceptionExistedUser);
+			list.add(logOff);
+
 				
 			for(IBusiness object:list){
 				boolean result = object.excute(driver);
