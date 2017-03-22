@@ -34,7 +34,7 @@ public class RegisterNormal implements IBusiness
 		{
 			if (driver.findElement(By.xpath(ConfigFile.getElementProperties("registerHeader"))).getText().equals("新员工注册"))
 			{
-				ConfigFile.appendContentToLogFile("Setp3: Register employee page is opened successfully");					
+				ConfigFile.appendContentToLogFile("Setp1: Register employee page is opened successfully");					
 				
 				//Find the element of ER number and input number
 				driver.findElement(By.xpath(ConfigFile.getElementProperties("erNumber"))).sendKeys(ConfigFile.getValueProperties("erNumber"));
@@ -86,7 +86,7 @@ public class RegisterNormal implements IBusiness
 				
 				if (driver.findElement(By.xpath(ConfigFile.getElementProperties("map"))).isDisplayed())
 				{
-					ConfigFile.appendContentToLogFile("Setp4: Capability map is activated successfully.");
+					ConfigFile.appendContentToLogFile("Setp2: Capability map is activated successfully.");
 					
 					//Select the item of capability map
 					List<WebElement> checks = driver.findElements(By.cssSelector("input[type=checkbox]"));
@@ -115,18 +115,18 @@ public class RegisterNormal implements IBusiness
 						checks.get(i);
 						if (driver.findElement(By.cssSelector("input[type=checkbox]")).isSelected())
 						{
-							ConfigFile.appendContentToLogFile("Setp5: Cancel Button can work");
+							ConfigFile.appendContentToLogFile("Setp3: Cancel Button can work");
 		
 						}
 						else
 						{
-							ConfigFile.appendContentToLogFile("Setp5: Cancel Button can not Work");
+							ConfigFile.appendContentToLogFile("Setp3: Cancel Button can not Work");
 						}
 					}
 					//Click the submit button of capability map 
 					driver.findElement(By.xpath(ConfigFile.getElementProperties("mapSubmit"))).click();
 					
-					ConfigFile.appendContentToLogFile("Setp6: Submit capability map.");
+					ConfigFile.appendContentToLogFile("Setp4: Submit capability map.");
 														
 					//Click the Register button 
 					driver.findElement(By.xpath(ConfigFile.getElementProperties("registerSubmitButton"))).submit();
@@ -134,14 +134,14 @@ public class RegisterNormal implements IBusiness
 					Thread.sleep(3000);
 					if (driver.findElement(By.xpath(ConfigFile.getElementProperties("registerAlert"))).isDisplayed())
 					{
-						ConfigFile.appendContentToLogFile("Step7: Register the new employee.");
+						ConfigFile.appendContentToLogFile("Step5: Register the new employee.");
 						ConfigFile.appendContentToLogFile(driver.findElement(By.xpath(ConfigFile.getElementProperties("registerAlert"))).getText());
 						
 						return true;
 					}
 					else 
 					{
-						ConfigFile.appendContentToLogFile("Step7: Registering the new employee failed.");
+						ConfigFile.appendContentToLogFile("Step5: Registering the new employee failed.");
 						ConfigFile.appendContentToLogFile(driver.findElement(By.xpath(ConfigFile.getElementProperties("registerAlert"))).getText());
 						
 						return false;
@@ -150,13 +150,13 @@ public class RegisterNormal implements IBusiness
 				}
 				else
 				{
-					ConfigFile.appendContentToLogFile("Setp4: Capability map is not activated.");	
+					ConfigFile.appendContentToLogFile("Setp2: Capability map is not activated.");	
 					return false;
 				}
 			}
 			else
 			{
-				ConfigFile.appendContentToLogFile("Setp3: Openning Register employee page failed. Current page is :");	
+				ConfigFile.appendContentToLogFile("Setp1: Openning Register employee page failed. Current page is :");	
 				ConfigFile.appendContentToLogFile(driver.findElement(By.xpath(ConfigFile.getElementProperties("registerHeader"))).getText());
 				return false;
 			}
@@ -164,7 +164,7 @@ public class RegisterNormal implements IBusiness
 		}
 		else
 		{
-			ConfigFile.appendContentToLogFile("Setp3: Openning Register employee page failed");
+			ConfigFile.appendContentToLogFile("Setp1: Openning Register employee page failed");
 			return false;
 		}
 		
