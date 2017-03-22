@@ -82,29 +82,29 @@ public class RegisterNormal implements IBusiness {
 				
 				if (driver.findElement(By.xpath(ConfigFile.getElementProperties("map"))).isDisplayed())
 				{
-					ConfigFile.appendContentToLogFile("Setp4: Capability map is activated successfully.");
+					ConfigFile.appendContentToLogFile("Setp2: Capability map is activated successfully.");
 					
 					//Put a Implicit wait, will wait for 5 seconds before verification
 					driver.manage().timeouts().implicitlyWait(10,TimeUnit.SECONDS);
 					
 					//Click the submit button of capability map 
 					driver.findElement(By.xpath(ConfigFile.getElementProperties("mapSubmit"))).click();
-					ConfigFile.appendContentToLogFile("Setp5: Submit capability map.");
+					ConfigFile.appendContentToLogFile("Setp3: Submit capability map.");
 														
 					//Click the Register button 
 					driver.findElement(By.xpath(ConfigFile.getElementProperties("registerSubmitButton"))).submit();
 					
-					Thread.sleep(1000);
+					Thread.sleep(3000);
 					if (driver.findElement(By.xpath(ConfigFile.getElementProperties("registerAlert"))).isDisplayed())
 					{
-						ConfigFile.appendContentToLogFile("Step6: Register the new employee.");
+						ConfigFile.appendContentToLogFile("Step4: Register the new employee.");
 						ConfigFile.appendContentToLogFile(driver.findElement(By.xpath(ConfigFile.getElementProperties("registerAlert"))).getText());
 						
 						return true;
 					}
 					else 
 					{
-						ConfigFile.appendContentToLogFile("Step6: Registering the new employee failed.");
+						ConfigFile.appendContentToLogFile("Step4: Registering the new employee failed.");
 						ConfigFile.appendContentToLogFile(driver.findElement(By.xpath(ConfigFile.getElementProperties("registerAlert"))).getText());
 						
 						return false;
@@ -113,13 +113,13 @@ public class RegisterNormal implements IBusiness {
 				}
 				else
 				{
-					ConfigFile.appendContentToLogFile("Setp4: Capability map is not activated.");	
+					ConfigFile.appendContentToLogFile("Setp2: Capability map is not activated.");	
 					return false;
 				}
 			}
 			else
 			{
-				ConfigFile.appendContentToLogFile("Setp3: Openning Register employee page failed. Current page is :");	
+				ConfigFile.appendContentToLogFile("Setp1: Openning Register employee page failed. Current page is :");	
 				ConfigFile.appendContentToLogFile(driver.findElement(By.xpath(ConfigFile.getElementProperties("registerHeader"))).getText());
 				return false;
 			}
@@ -127,7 +127,7 @@ public class RegisterNormal implements IBusiness {
 		}
 		else
 		{
-			ConfigFile.appendContentToLogFile("Setp3: Openning Register employee page failed");
+			ConfigFile.appendContentToLogFile("Setp1: Openning Register employee page failed");
 			return false;
 		}
 		

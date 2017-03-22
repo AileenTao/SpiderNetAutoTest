@@ -17,7 +17,7 @@ import com.spidernet.autotest.util.ConfigFile;
 
 public class TestLoginPage {
 	
-static WebDriver driver = null;
+	static WebDriver driver = null;
 	
 	@BeforeClass
 	public static void createDriver()  {
@@ -43,8 +43,8 @@ static WebDriver driver = null;
 			IBusiness loginExceptionNamewithSpecialChar = new LoginExceptionNamewithSpecialChar();
 			IBusiness loginExceptionLongName = new LoginExceptionLongName();
 			IBusiness loginExceptionLongPSW = new LoginExceptionLongPSW();
+			
 			LoginNormal loginNormal = new LoginNormal();
-			//loginNormal.setUserName(userName);
 			
 			List<IBusiness> list = new ArrayList<IBusiness>();
 			list.add(loginExceptionEmptyName);
