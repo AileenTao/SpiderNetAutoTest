@@ -142,4 +142,39 @@ public class TestRegisterPage {
 		}
 		
 	}
+	
+	@Test
+	public void testRegisterExceptionInputFormat() {
+		try{
+			LoginNormal loginNormal = new LoginNormal();
+			IBusiness registerExceptionInputFormat = new RegisterExceptionInputFormat();
+			IBusiness logOff = new LogOff();
+			
+		
+			List<IBusiness> list = new ArrayList<IBusiness>();
+
+			list.add(loginNormal);
+			list.add(registerExceptionInputFormat);
+			list.add(logOff);
+
+				
+			for(IBusiness object:list){
+				boolean result = object.excute(driver);
+				if(result){
+					ConfigFile.appendContentToLogFile("******* Case Pass :) ******* ");
+					Assert.assertTrue(result);
+				}
+				else
+				{
+					ConfigFile.appendContentToLogFile("******* Case Fail :( ******* ");
+				}	
+				Thread.sleep(1000);
+			}
+			
+			
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+		
+	}
 }
