@@ -1,18 +1,22 @@
 package com.spidernet.autotest.business;
 
+import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
 
 import com.spidernet.autotest.util.CommonUtils;
 import com.spidernet.autotest.util.ConfigFile;
 
-public class RegisterNormal implements IBusiness {
+public class RegisterNormal implements IBusiness 
+{
 	
 
-	public boolean excute(WebDriver driver) throws Exception{
+	public boolean excute(WebDriver driver) throws Exception
+	{
 		
 		driver.findElement(By.xpath(ConfigFile.getElementProperties("registerMenu"))).click();
 		
@@ -84,12 +88,45 @@ public class RegisterNormal implements IBusiness {
 				{
 					ConfigFile.appendContentToLogFile("Setp4: Capability map is activated successfully.");
 					
-					//Put a Implicit wait, will wait for 5 seconds before verification
-					driver.manage().timeouts().implicitlyWait(10,TimeUnit.SECONDS);
+					//Select the item of capability map
+					List<WebElement> checks = driver.findElements(By.cssSelector("input[type=checkbox]"));
+					for(WebElement check:checks)
+					{
+						check.click();
+					}
 					
+					//Put a Implicit wait, will wait for 5 seconds before verification
+					driver.manage().timeouts().implicitlyWait(5,TimeUnit.SECONDS);
+					Thread.sleep(5000);
+					
+			        //Click the cancel button of capability map
+					driver.findElement(By.xpath(ConfigFile.getElementProperties("mapCancel"))).click();
+					
+					//Re_sumbit Register button.
+					projectName.selectByVisibleText(ConfigFile.getValueProperties("projectName_null"));
+					
+					driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
+					Thread.sleep(5000);
+					
+					projectName.selectByVisibleText(ConfigFile.getValueProperties("projectName"));
+					
+					for (int i =0;i< checks.size();i++)
+					{
+						checks.get(i);
+						if (driver.findElement(By.cssSelector("input[type=checkbox]")).isSelected())
+						{
+							ConfigFile.appendContentToLogFile("Setp5: Cancel Button can work");
+		
+						}
+						else
+						{
+							ConfigFile.appendContentToLogFile("Setp5: Cancel Button can not Work");
+						}
+					}
 					//Click the submit button of capability map 
 					driver.findElement(By.xpath(ConfigFile.getElementProperties("mapSubmit"))).click();
-					ConfigFile.appendContentToLogFile("Setp5: Submit capability map.");
+					
+					ConfigFile.appendContentToLogFile("Setp6: Submit capability map.");
 														
 					//Click the Register button 
 					driver.findElement(By.xpath(ConfigFile.getElementProperties("registerSubmitButton"))).submit();
@@ -97,14 +134,14 @@ public class RegisterNormal implements IBusiness {
 					Thread.sleep(1000);
 					if (driver.findElement(By.xpath(ConfigFile.getElementProperties("registerAlert"))).isDisplayed())
 					{
-						ConfigFile.appendContentToLogFile("Step6: Register the new employee.");
+						ConfigFile.appendContentToLogFile("Step7: Register the new employee.");
 						ConfigFile.appendContentToLogFile(driver.findElement(By.xpath(ConfigFile.getElementProperties("registerAlert"))).getText());
 						
 						return true;
 					}
 					else 
 					{
-						ConfigFile.appendContentToLogFile("Step6: Registering the new employee failed.");
+						ConfigFile.appendContentToLogFile("Step7: Registering the new employee failed.");
 						ConfigFile.appendContentToLogFile(driver.findElement(By.xpath(ConfigFile.getElementProperties("registerAlert"))).getText());
 						
 						return false;
