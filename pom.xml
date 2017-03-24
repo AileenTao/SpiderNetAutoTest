@@ -34,6 +34,15 @@
   </dependencies>
   <build>
 		<finalName>SpiderNetAutoTest</finalName>
+		<resources>    
+	        <resource>    
+	            <directory>src/main/java</directory>    
+	            <includes>    
+	                <include>**/*.*</include>    
+	            </includes>    
+	            <filtering>false</filtering>    
+	        </resource>    
+	    </resources>  
 		<plugins>
 			<plugin>
 					<groupId>org.codehaus.mojo</groupId>
